@@ -42,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -49,6 +50,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -59,7 +62,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
 public class Extentreports {
-	 ExtentReports extent = new ExtentReports();
+	ExtentReports extent = new ExtentReports();
 	ExtentSparkReporter spark = new ExtentSparkReporter("ExtentReport.html");
 	ExtentTest testCase;
 	@Test (priority = 1)
@@ -237,6 +240,9 @@ public class Extentreports {
 			wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Academic Info']")));
 			WebElement academic= driver.findElement(By.xpath("//span[text()='Academic Info']"));
 			academic.click();
+			File screenshotfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			//Copy file at destination
+			FileUtils.copyFile(screenshotfile, new File(".//screenshot/screen.png"));
 			wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Log out']")));
 			WebElement logout= driver.findElement(By.xpath("//span[text()='Log out']"));
 			logout.click(); 

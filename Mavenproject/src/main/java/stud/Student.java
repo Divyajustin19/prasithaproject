@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -80,12 +81,11 @@ public class Student extends Baseclass{
 			wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Academic Info']")));
 			WebElement academic= driver.findElement(By.xpath("//span[text()='Academic Info']"));
 			academic.click();
-			//Convert web driver object to TakeScreenshot
-			TakesScreenshot scrShot =((TakesScreenshot)driver);
-			//Call getScreenshotAs method to create image file
-			File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+			
+			File screenshotfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			//Copy file at destination
-			FileUtils.copyFile(SrcFile, new File("/Mavenproject/src/main/java/stud/FileUtils.java1"));
+			FileUtils.copyFile(screenshotfile, new File(".//screenshot/screen.png"));
+			
 			wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Log out']")));
 			WebElement logout= driver.findElement(By.xpath("//span[text()='Log out']"));
 			logout.click(); 
