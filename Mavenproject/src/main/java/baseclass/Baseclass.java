@@ -9,7 +9,9 @@ public class Baseclass {
 	{
 		System.setProperty("webdriver.chrome.driver", "E:\\chromedriver_win32 (5)\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
+		
 		driver.manage().window().maximize();
+		
        return driver;
 	}
 
